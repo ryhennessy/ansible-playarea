@@ -1,0 +1,9 @@
+---
+- name: Send the notification of a failure
+  hosts: localhost
+  tasks:
+    - name: Send the failure of a job
+      local_action:
+        module: slack
+        token: TAQDHFX8E/BAP0SBKPT/I3laNo5LbIjzw49hFFKrIkV9
+        msg: "Job {{ tower_job_id }} / {{tower_job_template_name }} failed on {{ ansible_date_time.date }} at {{ ansible_date_time.time }}.   The job was run by {{ tower_user_name }}."
