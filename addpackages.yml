@@ -1,0 +1,19 @@
+---
+- name: Add Packages needed for the server
+  become: yes
+  hosts tag_ryans-stuff
+  vars:
+    my_packages:
+      - httpd
+  tasks:
+    - name: Update the server to latest patch cycle and exclude the kernel updates
+      yum:
+        name: '*'
+        state: latest
+        exclude: kernel* 
+    - name: Installed the packages needed by the server
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop: my_packages
+... 
