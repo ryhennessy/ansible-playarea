@@ -1,0 +1,22 @@
+---
+- name: This is a simple playbook to add users via the my-users var
+  hosts: tag_ryans-stuff
+  become: yes
+  vars:
+    my-users:
+      - ryan
+  tasks:
+    - name: Add the user "{{ item }}" to the host
+      user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ my-users }}"
+    - name: Make sure the bin directory is present in "{{ item  }}" home dir
+      file:
+        path: "/home/{{ item }}/bin"
+        owner: "{{ item }}"
+        group: "{{ item }}"
+        mode: 0644
+        state: directory
+      loop: "{{ my-users }}"
+...
