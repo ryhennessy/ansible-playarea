@@ -15,5 +15,5 @@
       yum:
         name: "{{ item }}"
         state: latest
-      loop: my_packages
+      loop: "{{ my_packages }}"
 ... 
