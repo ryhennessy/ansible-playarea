@@ -5,6 +5,8 @@
   vars:
     my_packages:
       - httpd
+    my_services:
+      - httpd
   tasks:
     - name: Update the server to latest patch cycle and exclude the kernel updates
       yum:
@@ -16,4 +18,10 @@
         name: "{{ item }}"
         state: latest
       loop: "{{ my_packages }}"
+    - name: Install the packages needed by the server
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      loop: "{{ my_services }}" 
 ... 
