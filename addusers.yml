@@ -16,7 +16,7 @@
         path: "/home/{{ item }}/bin"
         owner: "{{ item }}"
         group: "{{ item }}"
-        mode: 0644
+        mode: 0640
         state: directory
       loop: "{{ my_users }}"
 ...
