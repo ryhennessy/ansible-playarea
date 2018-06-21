@@ -6,7 +6,7 @@
     my_users:
       - ryan
   tasks:
-    - name: Add the specified users to the host 
+    - name: Add the specified users to the managed server
       user:
         name: "{{ item }}"
         state: present
